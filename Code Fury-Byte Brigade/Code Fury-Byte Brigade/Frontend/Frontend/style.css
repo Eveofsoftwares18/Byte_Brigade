@@ -1,0 +1,226 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Header styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+header h1 {
+    margin-bottom: 1rem;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #555;
+}
+
+/* Main content styles */
+main {
+    padding: 2rem 0;
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+/* Hero section */
+.hero {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* Manager dashboard */
+.dashboard-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.room-list,
+.booking-form {
+    width: 48%;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin-bottom: 0.5rem;
+    }
+
+    .dashboard-content {
+        flex-direction: column;
+    }
+
+    .room-list,
+    .booking-form {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+#roomFilter {
+    margin-bottom: 1rem;
+}
+
+#roomSelect {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+/* Additional Calendar Styles */
+.calendar-day.booked {
+    background-color: #ffeb3b; /* Highlight booked days with a yellow background */
+    color: #000;
+    font-weight: bold;
+}
+
+.calendar-day.empty {
+    background-color: #f0f0f0; /* Light grey for empty days */
+}
+
+.booking-details {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.booking-details p {
+    margin: 5px 0;
+}
+
+.booking-details h3 {
+    margin-top: 0;
+}
+/* Calendar Day Styles */
+.calendar-day.booked {
+    color: #fff;
+    font-weight: bold;
+}
+
+.calendar-day.booked[data-room-type="Training Room"] {
+    background-color: #ff5733; /* Orange */
+}
+
+.calendar-day.booked[data-room-type="Board Room"] {
+    background-color: #33cfff; /* Light Blue */
+}
+
+.calendar-day.booked[data-room-type="Conference Room"] {
+    background-color: #75ff33; /* Light Green */
+}
+
+.booking-details {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.booking-details p {
+    margin: 5px 0;
+}
+
+.booking-details h3 {
+    margin-top: 0;
+}

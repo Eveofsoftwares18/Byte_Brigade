@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard - Automated Meeting Booking Room System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .manager-dashboard {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .dashboard-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .room-list, .booking-form, .search-rooms {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        h3 {
+            margin-top: 0;
+        }
+
+        .room-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .room-list ul li {
+            padding: 8px;
+            margin-bottom: 8px;
+            background-color: #fff;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .availability-status {
+            color: #d9534f; /* Red for not available */
+        }
+
+        .availability-status.available {
+            color: #5bc0de; /* Blue for available */
+        }
+
+        /* Room type colors */
+        .room-training {
+            color: #ff5733; /* Orange */
+        }
+
+        .room-board {
+            color: #33cfff; /* Light Blue */
+        }
+
+        .room-conference {
+            color: #75ff33; /* Light Green */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Automated Meeting Booking Room System</h1>
+            <nav>
+                <ul>
+                    <li><a href="manager.html" class="active">Dashboard</a></li>
+                    <li><a href="calendar.html">Calendar</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="#" id="logoutBtn">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="manager-dashboard">
+                <h2>Manager Dashboard</h2>
+                <p>Welcome, <span id="userEmail">Manager</span>!</p>
+                <div class="dashboard-content">
+                    <!-- Meeting Rooms List -->
+                    <div class="room-list">
+                        <h3>Meeting Rooms</h3>
+                        <ul id="roomList">
+                            <!-- Dynamically populated rooms -->
+                        </ul>
+                    </div>
+                    <!-- Book a Room Form -->
+                    <div class="booking-form">
+                        <h3>Book a Room</h3>
+                        <form id="bookingForm">
+                            <div class="form-group">
+                                <label for="roomSelect">Select Room:</label>
+                                <select id="roomSelect" required>
+                                    <!-- Options will be dynamically populated -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bookingDate">Start Date:</label>
+                                <input type="date" id="bookingDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate">End Date:</label>
+                                <input type="date" id="endDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="startTime">Start Time:</label>
+                                <input type="time" id="startTime" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="endTime">End Time:</label>
+                                <input type="time" id="endTime" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventTitle">Event Title:</label>
+                                <input type="text" id="eventTitle" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="recurringBooking">Recurring Booking:</label>
+                                <select id="recurringBooking">
+                                    <option value="none">None</option>
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Price:</label>
+                                <p id="roomPrice">$0.00</p>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Book Room</button>
+                        </form>
+                    </div>
+                    <!-- Search Available Rooms Form -->
+                    <div class="search-rooms">
+                        <h3>Search Available Rooms</h3>
+                        <form id="searchForm">
+                            <div class="form-group">
+                                <label for="searchDate">Date:</label>
+                                <input type="date" id="searchDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="searchStartTime">Start Time:</label>
+                                <input type="time" id="searchStartTime" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="searchEndTime">End Time:</label>
+                                <input type="time" id="searchEndTime" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="searchCapacity">Minimum Capacity:</label>
+                                <input type="number" id="searchCapacity" min="1">
+                            </div>
+                            <button type="submit" class="btn btn-secondary">Search Rooms</button>
+                        </form>
+                        <div id="searchResults"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Automated Meeting Booking Room System. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        // JavaScript to dynamically populate the room list and dropdown
+        document.addEventListener('DOMContentLoaded', function () {
+            const rooms = [
+                { name: "Training Room", capacity: 20, ac: "AC", price: 150, className: "room-training" },
+                { name: "Board Room", capacity: 10, ac: "Non-AC", price: 100, className: "room-board" },
+                { name: "Conference Room", capacity: 15, ac: "AC", price: 120, className: "room-conference" }
+            ];
+
+            const roomList = document.getElementById('roomList');
+            const roomSelect = document.getElementById('roomSelect');
+
+            // Populate room list
+            rooms.forEach(room => {
+                const li = document.createElement('li');
+                li.textContent = `${room.name} - Capacity: ${room.capacity} - ${room.ac} - Price: $${room.price}`;
+                li.classList.add(room.className);
+                roomList.appendChild(li);
+            });
+
+            // Populate dropdown
+            rooms.forEach(room => {
+                const option = document.createElement('option');
+                option.value = room.name;
+                option.textContent = room.name;
+                roomSelect.appendChild(option);
+            });
+
+            // Update price when selecting a room
+            roomSelect.addEventListener('change', function () {
+                const selectedRoom = rooms.find(room => room.name === this.value);
+                document.getElementById('roomPrice').textContent = `$${selectedRoom.price.toFixed(2)}`;
+            });
+        });
+    </script>
+</body>
+</html>

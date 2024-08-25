@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - Automated Meeting Booking Room System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .calendar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .calendar {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            padding: 15px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-day {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .calendar-day:hover {
+            background-color: #e0e0e0;
+        }
+
+        .booking-details {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+
+        .booking-details h3 {
+            margin-top: 0;
+        }
+
+        /* Room type colors */
+        .room-training {
+            background-color: #ff5733; /* Orange */
+        }
+
+        .room-board {
+            background-color: #33cfff; /* Light Blue */
+        }
+
+        .room-conference {
+            background-color: #75ff33; /* Light Green */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Automated Meeting Booking Room System</h1>
+        <nav>
+            <ul>
+                <li><a href="manager.html">Dashboard</a></li>
+                <li><a href="calendar.html" class="active">Calendar</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="calendar-container">
+            <div class="calendar">
+                <div class="calendar-header">
+                    <button id="prevMonth">&lt; Prev</button>
+                    <h2 id="monthYear"></h2>
+                    <button id="nextMonth">Next &gt;</button>
+                </div>
+                <div class="calendar-days" id="calendarDays"></div>
+            </div>
+            <div class="booking-details" id="bookingDetails"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Automated Meeting Booking Room System. All rights reserved.</p>
+    </footer>
+    <script src="calendar.js"></script>
+</body>
+</html>
